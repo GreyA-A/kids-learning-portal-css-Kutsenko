@@ -127,3 +127,272 @@ footer {
     border-top: 4px dashed #CFD8DC;
     font-size: 0.95rem;
 }
+
+/* ==========================================================================
+   3. Стилі для Головної сторінки (index.html) — Варіант 4
+   ========================================================================== */
+
+/* 1. Позиціонування шапки (position: relative, z-index) */
+header {
+    position: relative;
+    padding-top: 150px;                     /* Місце для абсолютно позиціонованого логотипу */
+    padding-bottom: 20px;
+    z-index: 10;
+}
+
+/* Вимога варіанта: Назва веб-порталу та логотип абсолютно позиціоновані з 0 відступом зверху */
+header > div:first-child {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+header > nav {
+    margin-bottom: 10px;
+}
+
+header div:last-child {
+    display: flex;
+    gap: 10px;
+}
+
+/* 2. Макет сторінки на CSS Grid (п. 6 завдання) */
+@media (min-width: 768px) {
+    body {
+        display: grid;
+        grid-template-areas:
+            "header header"
+            "aside main"
+            "footer footer";
+        grid-template-columns: 340px 1fr;
+        gap: 24px;
+        padding: 0 20px;
+    }
+
+    header {
+        grid-area: header;
+    }
+
+    aside {
+        grid-area: aside;
+        position: static;                   /* Друге значення position: static */
+        background: var(--card-bg-rgb);     /* RGB */
+        padding: 16px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        height: fit-content;
+    }
+
+    main {
+        grid-area: main;
+    }
+
+    footer {
+        grid-area: footer;
+    }
+
+    /* Ховаємо <hr>, бо вони є прямими дітьми body і ламають сітку */
+    body > hr {
+        display: none;
+    }
+}
+
+audio {
+    width: 100%;
+    min-width: 300px;
+    box-sizing: border-box;
+    max-width: 100%;
+    display: block;
+    margin: 12px 0;
+}
+
+/* 3. Float: відео ЗЛІВА, фото СПРАВА */
+article figure {
+    margin: 0;
+}
+
+/* Відео — зліва, текст обтікає справа */
+article figure.media-left {
+    float: left;
+    clear: left;
+    width: 45%;
+    max-width: 480px;
+    margin: 4px 20px 12px 16px;
+}
+
+/* Завдання починаються під відео, на всю ширину */
+#about .tasks-title,
+#about .tasks-list {
+    clear: left;
+}
+
+/* Бонус: білий фон першого абзацу більше не заходить під відео */
+#about p:first-of-type {
+    display: flow-root;
+}
+
+/* Фото — справа, текст обтікає зліва */
+article figure.media-right {
+    float: right;
+    clear: right;
+    width: 30%;
+    max-width: 240px;
+    margin: 4px 16px 12px 20px;
+}
+
+/* Медіа заповнюють фігуру; float усередині фігури скидаємо */
+article figure img,
+article figure video {
+    display: block;
+    float: none;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+article figcaption {
+    font-size: 0.9rem;
+    padding: 6px 0;
+}
+
+/* Клірфікс: наступні блоки не наїжджають на float */
+article::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Вузькі екрани: прибираємо обтікання */
+@media (max-width: 600px) {
+    article figure.media-left,
+    article figure.media-right {
+        float: none;
+        width: 100%;
+        max-width: none;
+        margin: 12px 0;
+    }
+}
+
+/* 4. Вимога варіанта: Блок опису мети та завдань має margin, але НЕ має padding */
+/* 5. Вимога: блок з найбільшим обсягом тексту зі смугою прокручування (overflow) */
+#about {
+    margin: 30px 20px 25px 20px;
+    padding: 0 !important;          /* вимога варіанта */
+    border: 2px dashed #FFB74D;
+    border-radius: 12px;
+    max-height: 420px;
+    overflow-y: auto;               /* прокрутка лишається, а також створює BFC */
+}
+
+/* Стилізація слів з обов'язкового речення (span, b, i, em, u) */
+#about p span {
+    color: var(--accent-color);       /* HEX: #4A148C */
+    font-weight: 700;
+}
+
+#about p em {
+    color: var(--soft-green);         /* HSL */
+}
+
+/* Маркери списку завдань (псевдоелемент ::marker) */
+.tasks-list li::marker {
+    color: var(--soft-green);
+}
+
+/* Відступи від рамки без padding у самому #about */
+#about > :not(figure) {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+/* 6. Вимога варіанта: Перша літера тексту про те, чому навчають, має тінь та темно-зелений колір */
+#study-plan > p::first-letter {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: darkgreen;                     /* Спосіб задання кольору: Name */
+    text-shadow: 2px 2px 4px rgba(0, 100, 0, 0.4);
+    float: left;
+    margin-right: 1px;
+    line-height: 1;
+}
+
+/* 7. Вимога варіанта: Зміщення таблиці при наведенні курсору праворуч на 2% ширини viewport (2vw) */
+#study-plan .table-wrap {
+    width: calc(100% - 2.5vw);
+}
+
+#study-plan table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* Вимога варіанта: зсув праворуч на 2vw при наведенні */
+#study-plan .table-wrap:hover table {
+    transform: translateX(2vw);
+}
+
+#study-plan th,
+#study-plan td {
+    border: 1px solid #FFE082;
+    padding: 10px;
+    text-align: left;
+}
+
+#study-plan thead th {
+    background-color: #FFB74D;
+    color: #FFFFFF;
+}
+
+#study-plan tfoot tr {
+    background-color: #FFF8E1;
+    font-weight: bold;
+}
+
+/* 8. Вимога варіанта: Тінь у блоку контактів через 2 сек при фокусуванні */
+footer#contacts {
+    outline: none;
+    cursor: pointer;
+    /* Затримка появи тіні рівно 2 секунди (transition-delay: 2s) */
+    transition: box-shadow 0.4s ease 2s, border-color 0.4s ease;
+    border: 2px solid transparent;
+}
+
+footer#contacts:focus {
+    border-color: #FF6F00;
+    box-shadow: 0 10px 25px rgba(255, 111, 0, 0.35); /* Поява помітної тіні */
+    transition: box-shadow 0.4s ease 2s, border-color 0.4s ease;
+}
+
+/* 9. Вимога п. 4: Елемент із переходом між 2 стилями (не менше 3 властивостей) */
+.interactive-card,
+#about p:first-of-type {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* 3 властивості переходу */
+}
+
+#about p:first-of-type:hover {
+    background-color: #FFFDE7;
+    border-color: #FFD54F;
+    box-shadow: 0 6px 16px rgba(255, 179, 0, 0.25);
+}
+
+/* Анімація зростання насиченості фото до 150% */
+@keyframes saturate-up {
+    from { filter: saturate(1); }
+    to   { filter: saturate(1.5); }
+}
+
+article figure img:hover {
+    animation: saturate-up 0.6s ease forwards;
+}
