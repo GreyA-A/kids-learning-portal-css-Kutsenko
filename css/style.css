@@ -1,0 +1,129 @@
+/* ==========================================================================
+   Лабораторна робота №2. Базові стилі дитячого веб-порталу «Розумники»
+   Стиль дизайну: Мальований / ігровий
+   ========================================================================== */
+
+/* 1. Підключення двох різних шрифтів: Nunito та Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* Глобальні змінні кольорів різними способами (HEX, RGB, HSL, Name) */
+:root {
+    --primary-color: #FF6F00; /* HEX */
+    --primary-dark: #E65100; /* HEX */
+    --accent-color: #4A148C; /* HEX (за варіантом)*/
+    --card-bg-rgb: rgb(255, 255, 255); /* RGB */
+    --shadow-color: rgba(74, 20, 140, 0.15); /* RGBA */
+    --soft-green: hsl(142, 55%, 45%); /* HSL */
+    --fun-yellow: hsl(45, 100%, 51%); /* HSL */
+    --text-main: #2C3E50; /* HEX */
+    --bg-page: #F5F9FC; /* HEX */
+}
+
+/* 2. Базові правила для body */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-page);
+    font-family: 'Open Sans', sans-serif;   /* Шрифт №1: основний текст */
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* Селектор елементів: заголовки отримують шрифт №2 (Nunito) */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', sans-serif;      /* Шрифт №2: заголовки */
+    color: var(--primary-dark);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+/* Комбінатор нащадка (пробіл): кнопки всередині посилань */
+a button {
+    cursor: pointer;
+}
+
+/* Комбінатор безпосередньої дитини (>) */
+nav > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+nav > ul > li > a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--fun-yellow);
+    color: #333333;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    border-radius: 20px;
+    box-shadow: 0 3px 6px var(--shadow-color);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+nav > ul > li > a:hover {
+    background-color: #FFB300;
+    transform: translateY(-2px);
+}
+
+/* Селектор за атрибутом із частковим входженням [attr*=value] */
+a[href*="courses"] {
+    background-color: #81C784 !important; /* Зеленуватий акцент для навчальних матеріалів */
+    color: white !important;              /* Спосіб кольору: Name */
+}
+
+a[href*="feedback"] {
+    background-color: #64B5F6 !important; /* Блакитний для зворотного зв'язку */
+    color: white !important;
+}
+
+/* Суміжний сестринський комбінатор (+) */
+h2 + p {
+    font-size: 1.05rem;
+    color: #546E7A;
+}
+
+/* Селектори кнопок форми та дій */
+button {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;                         /* Спосіб кольору: Name */
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.03);
+}
+
+/* Селектор за обов'язковим атрибутом [required] */
+input[required], textarea[required], select[required] {
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Стилізація зображень у мальованому стилі */
+img {
+    border-radius: 14px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Спільний футер */
+footer {
+    background: #ECEFF1;
+    text-align: center;
+    padding: 24px;
+    margin-top: 40px;
+    border-top: 4px dashed #CFD8DC;
+    font-size: 0.95rem;
+}
