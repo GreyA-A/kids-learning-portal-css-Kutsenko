@@ -15,7 +15,7 @@
         }
      </style>
 </head>
-<body>
+<body class="page-feedback">
 
     <!-- ШАПКА СТОРІНКИ -->
     <header>
@@ -79,7 +79,7 @@
             <br>
 
             <!-- 5. Випадаючий список "Мета зворотнього зв'язку" -->
-            <p>
+            <p class="form-purpose">
                 <label for="feedback-purpose"><strong>Мета зворотнього зв’язку: *</strong></label><br>
                 <select id="feedback-purpose" name="feedback_purpose" required>
                     <option value="" disabled selected>-- Оберіть тему звернення --</option>
@@ -91,19 +91,19 @@
             </p>
 
             <!-- 6. Поле "Детально" з обмеженнями на висоту, ширину і кількість символів -->
-            <p>
+            <p class="form-details">
                 <label for="feedback-details"><strong>Детально (максимум 300 символів): *</strong></label><br>
                 <textarea id="feedback-details" name="feedback_details" rows="6" cols="50" maxlength="300" placeholder="Опишіть ваше звернення (до 300 символів)..." required></textarea>
             </p>
 
             <!-- Згода на обробку персональних даних -->
-            <p>
+            <p class="form-consent">
                 <input type="checkbox" id="consent" name="data_consent" required>
                 <label for="consent">Я надаю беззастережну згоду на обробку моїх персональних даних відповідно до політики конфіденційності порталу. *</label>
             </p>
 
             <!-- Кнопки відправлення та скидання -->
-            <p>
+            <p class="form-actions">
                 <button type="submit">Надіслати повідомлення</button>
                 <button type="reset">Очистити форму</button>
             </p>
